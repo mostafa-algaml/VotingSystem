@@ -148,6 +148,5 @@ namespace VotingSystem.Models
                 }
             }
         }
-
     }
 }
