@@ -1,0 +1,269 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif; }
+
+@font-face {
+  font-family: larken;
+  src: url(../../fonts/Poppins/Poppins-Regular.ttf); }
+input[type=radio] {
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2);
+  /* IE */
+  -moz-transform: scale(2);
+  /* FF */
+  -webkit-transform: scale(2);
+  /* Safari and Chrome */
+  -o-transform: scale(2);
+  /* Opera */
+  transform: scale(2);
+  padding: 10px; }
+  input[type=radio]:focus {
+    box-shadow: 0 0 0 0.1rem transparent !important;
+    outline: 0; }
+
+.candidate {
+  background: #fafafa;
+  padding: 80px 0; }
+
+.inheryt-input {
+  border-left: 0;
+  border-radius: unset;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 2px solid #ccc;
+  padding-left: 0; }
+  .inheryt-input:focus {
+    box-shadow: 0 0 0 0.2rem transparent !important;
+    border-color: #04ADEF;
+    border-width: 3px; }
+  .inheryt-input::placeholder {
+    color: #ccc; }
+
+.submited-btn {
+  float: right;
+  right: 15px;
+  width: 120px;
+  height: 40px;
+  background-color: #04ADEF;
+  color: #fff;
+  line-height: 40px;
+  border-radius: 4px;
+  border: 0;
+  outline: 0;
+  font-size: 14px; }
+  @media (max-width: 767px) {
+    .submited-btn {
+      margin-top: 10px; } }
+
+.assetes-btn {
+  width: 120px;
+  height: 40px;
+  border: 1px solid #E9E9E9;
+  border-radius: 4px;
+  opacity: 1;
+  display: block;
+  text-align: center;
+  line-height: 40px;
+  font-size: 14px; }
+
+.centered-block .centered-block-content {
+  width: 668px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #004F8C2E;
+  border-radius: 4px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 42px 84px; }
+  @media (max-width: 767px) {
+    .centered-block .centered-block-content {
+      width: 90%;
+      padding: 20px; } }
+  .centered-block .centered-block-content .centered-block-title {
+    color: #495456;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: larken; }
+  .centered-block .centered-block-content .centered-block-hint {
+    font-size: 15px;
+    color: #200505; }
+  .centered-block .centered-block-content .forget-link {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 14px;
+    color: #495456;
+    margin: 15px 0; }
+    .centered-block .centered-block-content .forget-link:hover {
+      text-decoration: none; }
+
+header .navbar-brand {
+  font-weight: bold;
+  font-size: 27px;
+  color: #200505 !important; }
+header .navbar-toggler:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #04ADEF; }
+header .navbar-nav {
+  margin-left: auto; }
+  header .navbar-nav .signup-btn {
+    width: 105px;
+    height: 38px;
+    border: 1px solid #04ADEF;
+    text-align: center;
+    border-radius: 4px;
+    color: #04ADEF !important; }
+  header .navbar-nav .signin-btn {
+    margin-right: 24px;
+    color: #200505 !important; }
+
+.signup {
+  margin-top: 102px;
+  position: relative; }
+  @media (max-width: 767px) {
+    .signup {
+      margin-top: 45px; } }
+  .signup .signup-title {
+    font-size: 30px;
+    color: #495456;
+    line-height: 1.6;
+    font-family: larken;
+    font-weight: bold; }
+    .signup .signup-title span {
+      display: block; }
+  .signup form {
+    margin-top: 52px;
+    position: relative; }
+    @media (max-width: 767px) {
+      .signup form {
+        margin-top: 35px;
+        padding: 15px 0; } }
+    .signup form .inheryt-input {
+      margin-bottom: 50px; }
+      @media (max-width: 767px) {
+        .signup form .inheryt-input {
+          margin-bottom: 15px; } }
+  .signup .social-icons ul {
+    list-style-type: none;
+    position: absolute;
+    right: 63px;
+    top: 50px; }
+    @media (max-width: 767px) {
+      .signup .social-icons ul {
+        right: 15px;
+        top: 10px; } }
+    .signup .social-icons ul li {
+      margin-bottom: 10px; }
+
+.candidate-form {
+  padding: 40px;
+  background-color: #fff;
+  position: relative; }
+  .candidate-form .form-check {
+    display: flex;
+    align-items: center;
+    padding-left: 3.25rem;
+    margin-bottom: 40px; }
+    @media (max-width: 767px) {
+      .candidate-form .form-check {
+        padding-left: 0; } }
+    .candidate-form .form-check .profile-img {
+      border-radius: 50%;
+      margin: 0 20px;
+      width: 120px;
+      height: 120px; }
+      @media (max-width: 767px) {
+        .candidate-form .form-check .profile-img {
+          width: 60px;
+          height: 60px; } }
+    .candidate-form .form-check .cand-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 800px; }
+      @media (max-width: 767px) {
+        .candidate-form .form-check .cand-info {
+          width: 100%; } }
+      .candidate-form .form-check .cand-info .form-check-label {
+        margin: 0 30px; }
+        @media (max-width: 767px) {
+          .candidate-form .form-check .cand-info .form-check-label {
+            margin: 0 15px; } }
+      .candidate-form .form-check .cand-info .form-check-input {
+        margin-left: -2.25rem; }
+      .candidate-form .form-check .cand-info .num {
+        margin: 0 30px; }
+  .candidate-form .can-footer {
+    border-top: 1px solid #e2e1e1;
+    padding: 24px 0; }
+    .candidate-form .can-footer .submited-btn {
+      line-height: unset; }
+
+.admin .candidate-content {
+  padding: 40px;
+  background-color: #fff; }
+  .admin .candidate-content .add-btn {
+    width: 210px;
+    background-color: #04ADEF;
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 20px; }
+  .admin .candidate-content .table-responsive th {
+    border-top: 0 !important; }
+  .admin .candidate-content .table-responsive .btn-container {
+    display: flex; }
+    .admin .candidate-content .table-responsive .btn-container .assetes-btn {
+      text-decoration: none; }
+    .admin .candidate-content .table-responsive .btn-container .edit-btn {
+      margin-right: 15px;
+      background-color: #04ADEF;
+      color: #FFF; }
+    .admin .candidate-content .table-responsive .btn-container .delete-btn {
+      background-color: #ee1a1a;
+      color: #FFF; }
+  .admin .candidate-content .pagination {
+    margin-top: 30px; }
+  .admin .candidate-content .results {
+    width: 280px;
+    margin-top: 50px; }
+    .admin .candidate-content .results .assetes-btn {
+      line-height: unset; }
+
+.add-section .submited-btn {
+  line-height: unset; }
+.add-section label {
+  font-weight: 500;
+  font-size: 14px; }
+
+.candidate.result {
+  height: calc(100vh - 66px);
+  position: relative; }
+
+.candidate-result {
+  padding: 40px 20px;
+  background-color: #fff;
+  width: 600px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); }
+  .candidate-result .candidate-result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    .candidate-result .candidate-result-item .can-name, .candidate-result .candidate-result-item .res-title {
+      font-weight: 500;
+      font-size: 18px; }
+    .candidate-result .candidate-result-item:first-child {
+      border-bottom: 1px solid #eee;
+      margin-bottom: 15px;
+      padding-bottom: 15px; }
+    .candidate-result .candidate-result-item .can-info .profile-img {
+      border-radius: 50%;
+      padding: 3px;
+      border: 1px solid #eee; }
+    .candidate-result .candidate-result-item .can-info .profile-name {
+      margin-left: 15px; }
+
+/*# sourceMappingURL=style.css.map */

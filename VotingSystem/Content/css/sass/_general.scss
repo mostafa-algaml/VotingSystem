@@ -1,0 +1,141 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+// larken fonts
+
+// regular
+@font-face {
+    font-family: larken;
+    src: url(../../fonts/Poppins/Poppins-Regular.ttf);
+}
+// ./larken fonts
+
+// radio button
+input[type=radio]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+    transform: scale(2);
+    padding: 10px;
+    &:focus{
+        box-shadow: 0 0 0 0.1rem transparent !important;
+        outline: 0;
+    }
+}
+// .radio button
+
+// candidate section
+.candidate{
+    background: #fafafa;
+    padding: 80px 0;
+}
+// ./candidate section
+
+// general input
+.inheryt-input{
+    border-left: 0;
+    border-radius: unset;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 2px solid #ccc;
+    padding-left: 0;
+    &:focus{
+        box-shadow: 0 0 0 0.2rem transparent !important;
+        border-color: $mainColor;
+        border-width: 3px;
+    }
+    &::placeholder{
+        color:  #ccc;
+    }
+}
+// ./general input
+
+// submit btn
+.submited-btn{
+    float: right;
+    right: 15px;
+    width: 120px;
+    height: 40px;
+    background-color: $mainColor;
+    color: #fff;
+    line-height: 40px;
+    border-radius: 4px;
+    border: 0;
+    outline: 0;
+    font-size: 14px;
+    @media #{$maxMobile} {
+        margin-top: 10px;
+    }
+}
+// ./submit btn
+
+// assets btn
+.assetes-btn{
+    width: 120px;
+    height: 40px;
+    border: 1px solid #E9E9E9;
+    border-radius: 4px;
+    opacity: 1;
+    display: block;
+    text-align: center;
+    line-height: 40px;
+    font-size: 14px;
+}
+// ./assets btn
+
+
+// centered block component
+.centered-block{
+    .centered-block-content{
+        width: 668px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #004F8C2E;
+        border-radius: 4px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 42px 84px;
+        @media #{$maxMobile} {
+            width: 90%;
+            padding: 20px;
+        }
+        // @media #{$maxSmall} {
+        //     margin-top: 60px;
+        // }
+        .centered-block-title{
+            color: #495456;
+            font-weight: bold;
+            font-size: 25px;
+            font-family: larken;
+        }
+        .centered-block-hint{
+            font-size: 15px;
+            color: $blackColor;
+        }
+        .forget-link{
+            display: flex;
+            justify-content: flex-end;
+            font-size: 14px;
+            color: #495456;
+            margin: 15px 0;
+            &:hover{
+                text-decoration: none;
+            }
+        }
+    }
+}
+// ./centered block component
+
+
+
+
+
+
+
+

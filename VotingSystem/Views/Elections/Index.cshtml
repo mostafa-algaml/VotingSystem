@@ -1,0 +1,76 @@
+﻿@model IEnumerable<VotingSystem.Models.CandidateVM>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="candidate">
+    <div class="container">
+        <form class="candidate-form">
+            @if (Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="form-check">
+                        <input class="form-check-input"
+                               type="radio"
+                               name="Candid"
+                               id="Candid_@item.ElectoralNumber"
+                               value="@item.ID">
+                        <img class="profile-img" src="@item.Photo" width="120" height="120" alt="">
+                        <div class="cand-info">
+                            <label class="form-check-label" for="Candid_@item.ElectoralNumber">
+                                @item.Name
+                            </label>
+                            <img src="@item.ElectoralSymbol" width="60" height="60" alt="">
+                            <span class="num">@item.ElectoralNumber</span>
+                        </div>
+                    </div>
+                }
+                <div class="can-footer">
+                    <button type="button" id="ElecBtn" class="submited-btn">Confirm</button>
+                </div>
+            }
+            else
+            {
+                <p class="text-center">No Candidateies Add yet.</p>
+            }
+
+        </form>
+    </div>
+</section>
+
+@section SectionScripts {
+    <script>
+
+        $("#ElecBtn").click(function () {
+            if ($("input[name='Candid']:checked").length != 0) {
+                beginLoading();
+                var CandidateID = $("input[name='Candid']:checked").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Elections/AddVote",
+                    data: { CandidateID: CandidateID },
+                    success: function (data) {
+                        finishLoading();
+                        if (data.Code == 1) {
+                            ShowNotify('success', 'Success', 'The election was successful');
+                            setTimeout(() => {
+                                window.location = "/Elections/Soon";
+                            }, 2000)
+                        }
+                        else {
+                            ShowNotify('danger', 'Error', 'An error has occurred');
+                        }
+                    },
+                    error: function () {
+                        finishLoading();
+                        ShowNotify('danger', 'Error', 'An error has occurred');
+                    }
+                });
+            }
+            else
+            {
+                ShowNotify('warning', 'Warning', 'You Must Choose Candidate First');
+            }
+        });
+    </script>
+}

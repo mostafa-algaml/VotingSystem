@@ -1,0 +1,135 @@
+﻿@model IEnumerable<VotingSystem.Models.CandidateVM>
+@{
+    var dateelec = VotingSystem.Models.ElectionVM.GetCandidateDate().ToString("yyyy-MM-dd");
+}
+<section class="candidate admin">
+    <div class="container">
+        <div class="candidate-content">
+            <form>
+                <a href="#" class="add-btn assetes-btn" id="ClearBtn">Begin New Elections</a>
+                <a href="/Candidates/Create" class="add-btn assetes-btn">Add New Candidate</a>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Candidate Name</th>
+                                <th scope="col">Electoral number</th>
+                                <th scope="col">Candidate photo</th>
+                                <th scope="col">Electoral symbol</th>
+                                <th scope="col">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="Cand_@item.ElectoralNumber">
+                                    <td>@item.Name</td>
+                                    <td>@item.ElectoralNumber</td>
+                                    <td>
+                                        <img src="@item.Photo" width="60" height="60" alt="">
+                                    </td>
+                                    <td>
+                                        <img src="@item.ElectoralSymbol" width="40" height="40" alt="">
+                                    </td>
+                                    <td>
+                                        <div class="btn-container">
+                                            <a href="/Candidates/Edit?ID=@item.ID" class="edit-btn assetes-btn ">Edit</a>
+                                            <a href="#" onclick="DelCandid('@item.ID','@item.ElectoralNumber')" class="delete-btn assetes-btn">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+            <!-- results -->
+            <form action="" class="results">
+                <div class="form-group">
+                    <label for="ElecDate">Results appears</label>
+                    <input type="date" value="@dateelec" class="form-control" @(!VotingSystem.Models.ElectionVM.HasCandidateDate() ? "" : "disabled") id="ElecDate" name="ElecDate">
+                </div>
+                @if (!VotingSystem.Models.ElectionVM.HasCandidateDate())
+                {
+                    <input class="assetes-btn" type="button" value="Save" id="AddElecDate">
+                }
+            </form>
+            <!-- .#results -->
+        </div>
+    </div>
+</section>
+@section SectionScripts {
+    <script>
+        function DelCandid(id, cannumber) {
+            beginLoading();
+            $.ajax({
+                type: "POST",
+                url: "/Candidates/Delete",
+                data: { ID: id },
+                success: function (data) {
+                    finishLoading();
+                    if (data.Code == 1) {
+                        ShowNotify('success', 'Success', 'Candidate Deleted Successefuly');
+                        $("#Cand_" + cannumber).remove();
+                    }
+                    else if (data.Code == 2) {
+                        ShowNotify('warning', 'Warning', 'The candidate was already elected');
+                    }
+                    else {
+                        ShowNotify('danger', 'Error', 'An error has occurred');
+                    }
+                },
+                error: function () {
+                    finishLoading();
+                    ShowNotify('danger', 'Error', 'An error has occurred');
+                }
+            });
+        }
+        $("#AddElecDate").click(function () {
+            beginLoading();
+            $.ajax({
+                type: "POST",
+                url: "/Elections/AddDate",
+                data: { ElecDate: $("#ElecDate").val() },
+                success: function (data) {
+                    finishLoading();
+                    if (data.Code == 1) {
+                        ShowNotify('success', 'Success', 'Election Date Added Successefuly');
+                        $("#ElecDate").attr('disabled', true);
+                        $("#AddElecDate").attr('hidden', true);
+                    }
+                    else {
+                        ShowNotify('danger', 'Error', 'An error has occurred');
+                    }
+                },
+                error: function () {
+                    finishLoading();
+                    ShowNotify('danger', 'Error', 'An error has occurred');
+                }
+            });
+        });
+        $("#ClearBtn").click(function () {
+            beginLoading();
+            $.ajax({
+                type: "GET",
+                url: "/Elections/ClearData",
+                success: function (data) {
+                    finishLoading();
+                    if (data.Code == 1) {
+                        ShowNotify('success', 'Success', 'All Data Cleared Successefuly');
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 2000)
+                    }
+                    else {
+                        ShowNotify('danger', 'Error', 'An error has occurred');
+                    }
+                },
+                error: function () {
+                    finishLoading();
+                    ShowNotify('danger', 'Error', 'An error has occurred');
+                }
+            });
+        });
+    </script>
+}

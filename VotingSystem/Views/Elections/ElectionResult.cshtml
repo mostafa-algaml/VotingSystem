@@ -1,0 +1,20 @@
+﻿@model IEnumerable<VotingSystem.Models.CandidateVM>
+<section class="candidate">
+    <div class="container">
+        <div class="candidate-form">
+            @foreach (var item in Model)
+            {
+                <div class="form-check">
+                    <img class="profile-img" src="@item.Photo" width="120" height="120" alt="">
+                    <div class="cand-info">
+                        <label class="form-check-label">
+                            @item.Name
+                        </label>
+                        <img src="@item.ElectoralSymbol" width="60" height="60" alt="">
+                        <span class="num">@item.CandidatePercentage</span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

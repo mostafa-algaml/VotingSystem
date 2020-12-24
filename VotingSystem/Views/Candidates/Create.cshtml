@@ -1,0 +1,104 @@
+﻿<section class="candidate add-section">
+    <div class="container">
+        <div class="candidate-content">
+            <form id="AddForm">
+                <div class="form-group">
+                    <label for="Name">Candidate Name</label>
+                    <input type="text" class="form-control" id="Name" name="Name">
+                </div>
+                <div class="form-group">
+                    <label for="ElectoralNumber">Electoral number</label>
+                    <input type="number" class="form-control" id="ElectoralNumber" name="ElectoralNumber">
+                </div>
+                <div class="form-group">
+                    <label for="Photo">Candidate photo</label>
+                    <input type="file" class="form-control-file" id="Photo" name="Photo">
+                </div>
+                <div class="form-group">
+                    <label for="ElectoralSymbol">Electoral symbol</label>
+                    <input type="file" class="form-control-file" id="ElectoralSymbol" name="ElectoralSymbol">
+                </div>
+                <div class="form-group" style="padding: 24px 0;">
+                    <button type="button" id="AddBtn" class="submited-btn send-btn">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+@section SectionScripts {
+    <script>
+        $('#AddForm').validate({
+            rules: {
+                Name: {
+                    required: true
+                },
+                ElectoralNumber: {
+                    required: true
+                },
+                ElectoralSymbol: {
+                    required: true
+                },
+                Photo: {
+                    required: true
+                }
+            },
+            messages: {
+                Name: {
+                    required: "Candidate Name must be entered"
+                },
+                ElectoralNumber: {
+                    required: "Electoral Number must be entered"
+                },
+                ElectoralSymbol: {
+                    required: "Electoral Symbol must be entered"
+                },
+                Photo: {
+                    required: "Candidate photo must be entered"
+                }
+            },
+            errorElement: 'div',
+        });
+        $("#AddBtn").click(function () {
+            if ($("#AddForm").valid()) {
+                var data = new FormData;
+                var UploadPhoto = $("#Photo").get(0).files;
+                var UploadSymbol = $("#ElectoralSymbol").get(0).files;
+                data.append("Name", $("#Name").val());
+                data.append("ElectoralNumber", $("#ElectoralNumber").val());
+                data.append("PhotoFile", UploadPhoto[0]);
+                data.append("ElectoralSymbolFile", UploadSymbol[0]);
+                beginLoading();
+                $.ajax({
+                    type: "POST",
+                    url: "/Candidates/Create",
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        finishLoading();
+                        if (data.Code == 1) {
+                            ShowNotify('success', 'Success', 'Candidate Added Successefuly');
+                            setTimeout(() => {
+                                window.location = "/Candidates/Index";
+                            }, 1000)
+                        }
+                        else if (data.Code == 2) {
+                            ShowNotify('warning', 'Warning', 'Name Is Exist');
+                        }
+                        else if (data.Code == 3) {
+                            ShowNotify('warning', 'Warning', 'Electoral Number Is Exist');
+                        }
+                        else {
+                            ShowNotify('danger', 'Error', 'An error has occurred');
+                        }
+                    },
+                    error: function () {
+                        finishLoading();
+                        ShowNotify('danger', 'Error', 'An error has occurred');
+                    }
+                });
+
+            }
+        });
+    </script>
+}

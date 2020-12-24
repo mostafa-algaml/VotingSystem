@@ -1,0 +1,29 @@
+﻿@model VotingSystem.Models.ElectionVoted
+<section class="candidate result">
+    <div class="container">
+        <div class="candidate-result">
+            <div class="candidate-result-item">
+                <span class="can-name">
+                    Your candidate
+                </span>
+                <span class="res-title">Results appears in</span>
+            </div>
+            <div class="candidate-result-item">
+                <div class="can-info">
+                    <img class="profile-img" src="@Model.Photo" width="120" height="120" alt="">
+                    <span class="profile-name">
+                        @Model.Name
+                    </span>
+                </div>
+                @if(Model.IsHaveDate)
+                {
+                    <span class="res">@Model.ElectionDate</span>
+                }
+                else
+                {
+                    <span class="res">hasn't been determined yet.</span>
+                }
+            </div>
+        </div>
+    </div>
+</section>
