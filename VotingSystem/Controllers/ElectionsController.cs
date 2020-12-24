@@ -24,7 +24,6 @@ namespace VotingSystem.Controllers
             var list = new CandidateVM().GetAll(true);
             return View(list);
         }
-        // GET: Elections
         public ActionResult ElectionResult()
         {
             if (ElectionVM.ElectionFinished())
@@ -39,7 +38,6 @@ namespace VotingSystem.Controllers
             }
             return RedirectToAction("Index");
         }
-        // GET: Elections
         public ActionResult Soon()
         {
             return View();
